@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+.section {
+  display: flex;
+}
+
 .center {
   display: flex;
   justify-content: center;

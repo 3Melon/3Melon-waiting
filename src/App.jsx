@@ -18,6 +18,7 @@ function App() {
         <a class="navbar-brand" href="#">
           <b>3melon 🍉</b>
         </a>
+        <button>watch</button>
       </nav>
       <div className="main-page">
         <div className="center">
@@ -25,6 +26,17 @@ function App() {
             <b>3melon</b>
           </h1>
           <h3>Web3 Social | Events | Meetups </h3>
+        </div>
+        <div className="youtube-video">
+          <iframe
+            width="350"
+            height="200"
+            src="https://www.youtube.com/embed/sqhaoo3xNr4"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
         </div>
 
         <div>

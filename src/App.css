@@ -1,0 +1,61 @@
+.App {
+  height: 100%;
+  padding: 1em;
+  width: 100%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  margin: 1em;
+  align-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+}
+
+.title {
+  color: #ff0044;
+  font-size: 5em;
+}
+
+.main-page {
+  display: grid;
+  align-content: space-between;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 2em 6em;
+}
+
+input[type=text] {
+  width: 50%;
+  padding: 0.5em;
+  margin: 0.5em;
+
+  transition: outline-color 0.25s;
+}
+input[type=text]:hover,input[type=text]:focus  {
+  outline-color: #ff0044;
+}
+
+@media only screen and (max-width: 600px) {
+  input[type=text] {
+    width: 90%;
+  }
+}
+
+.select {
+  outline-color: #ff0044;
+  background-color: black;
+}
+
+.btn-submit {
+  margin-top: 2em;
+}

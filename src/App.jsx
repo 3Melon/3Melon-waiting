@@ -1,16 +1,43 @@
 import { useState } from "react";
 import Select from "react-select";
 
+import EntryService from "./services/EntryService";
+
 import "./App.css";
 
-const options = [
-  { value: "mumbai", label: "Mumbai" },
-  { value: "bengaluru", label: "Bengaluru" },
-];
-
 function App() {
-  const [count, setCount] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(0);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [state, setState] = useState({ email: "", wallet: "", loc: [] });
+  const [msg, setMessage] = useState({ error: false, msg: "" });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    if (state.email == "" || state.loc.length == 0 || state.wallet == "") {
+      setMessage({ error: true, msg: "All fields are mandatory" });
+      return;
+    }
+    const newEntry = {
+      email: state.email,
+      wallet: state.wallet,
+      loc: state.loc,
+    };
+    try {
+      await EntryService.addEntry(newEntry);
+      setMessage({
+        error: false,
+        msg: state.email + " has been successfully added!",
+      });
+    } catch (err) {
+      setMessage({ error: false, msg: "Error occured" });
+    }
+    setState({ email: "", wallet: "", loc: [] });
+  };
+
+  const options = [
+    { value: "mumbai", label: "Mumbai" },
+    { value: "bengaluru", label: "Bengaluru" },
+  ];
 
   return (
     <div className="App">
@@ -40,24 +67,45 @@ function App() {
         </div>
 
         <div>
-          <form id="form">
+          <form id="form" onSubmit={handleSubmit}>
             <label>
               Get <code>weekly</code> updates of web3 events around you{" "}
               <code>in your inbox!</code>
             </label>
             <input
-              type="text"
+              type="email"
               placeholder="Email Address (abc@xyz.com)"
               name="email"
+              onChange={(e) =>
+                setState({
+                  email: e.target.value,
+                  wallet: state.wallet,
+                  loc: state.loc,
+                })
+              }
             />
             <input
               type="text"
               placeholder="Wallet Address (0x..)"
               name="wallet"
+              onChange={(e) =>
+                setState({
+                  email: state.email,
+                  wallet: e.target.value,
+                  loc: state.loc,
+                })
+              }
             />
             <Select
-              defaultValue={selectedOption}
-              onChange={setSelectedOption}
+              onChange={(e) => {
+                const temp = [];
+                e.forEach((loc) => temp.push(loc.value));
+                setState({
+                  email: state.email,
+                  wallet: state.wallet,
+                  loc: temp,
+                });
+              }}
               options={options}
               isMulti={true}
               isSearchable={true}
@@ -119,12 +167,7 @@ function App() {
               }}
             />
 
-            <button
-              className="btn-submit"
-              onClick={() => setCount((count) => count + 1)}
-            >
-              Subscribe
-            </button>
+            <button className="btn-submit">Subscribe</button>
           </form>
         </div>
 

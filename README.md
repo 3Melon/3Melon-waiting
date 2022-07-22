@@ -1,6 +1,6 @@
 # 3melon🍉
 
-[![3melon web3 meetups and events platform](https://github.com/3Melon/3Melon-waiting/blob/main/ss-1.png)]
+![3melon web3 meetups and events platform](https://github.com/3Melon/3Melon-waiting/blob/main/ss-1.png)
 
 Watch the YouTube video here:
 [![3melon web3 meetups and events platform](https://img.youtube.com/vi/sqhaoo3xNr4/0.jpg)](https://www.youtube.com/watch?v=sqhaoo3xNr4)

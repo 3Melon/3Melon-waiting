@@ -1,51 +1,18 @@
 import { useState } from "react";
 import Select from "react-select";
 
-import EntryService from "./services/EntryService";
-
 import "./App.css";
 
 function App() {
-  const [selectedOption, setSelectedOption] = useState("");
-  const [state, setState] = useState({ email: "", wallet: "", loc: [] });
-  const [msg, setMessage] = useState({ error: false, msg: "" });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMessage("");
-    if (state.email == "" || state.loc.length == 0 || state.wallet == "") {
-      setMessage({ error: true, msg: "All fields are mandatory" });
-      return;
-    }
-    const newEntry = {
-      email: state.email,
-      wallet: state.wallet,
-      loc: state.loc,
-    };
-    try {
-      await EntryService.addEntry(newEntry);
-      setMessage({
-        error: false,
-        msg: state.email + " has been successfully added!",
-      });
-    } catch (err) {
-      setMessage({ error: false, msg: "Error occured" });
-    }
-    setState({ email: "", wallet: "", loc: [] });
-  };
-
-  const options = [
-    { value: "mumbai", label: "Mumbai" },
-    { value: "bengaluru", label: "Bengaluru" },
-  ];
-
   return (
     <div className="App">
       <nav class="navbar navbar-dark">
         <a class="navbar-brand" href="#">
           <b>3melon 🍉</b>
         </a>
-        <button>watch</button>
+        <a href="https://youtube.com/playlist?list=PLwXSCBuwy1Qt92DyIcV7Da_vCseAOj9gJ">
+          <button>watch</button>
+        </a>
       </nav>
       <div className="main-page">
         <div className="center">
@@ -65,111 +32,12 @@ function App() {
             allowfullscreen
           ></iframe>
         </div>
-
-        <div>
-          <form id="form" onSubmit={handleSubmit}>
-            <label>
-              Get <code>weekly</code> updates of web3 events around you{" "}
-              <code>in your inbox!</code>
-            </label>
-            <input
-              type="email"
-              placeholder="Email Address (abc@xyz.com)"
-              name="email"
-              onChange={(e) =>
-                setState({
-                  email: e.target.value,
-                  wallet: state.wallet,
-                  loc: state.loc,
-                })
-              }
-            />
-            <input
-              type="text"
-              placeholder="Wallet Address (0x..)"
-              name="wallet"
-              onChange={(e) =>
-                setState({
-                  email: state.email,
-                  wallet: e.target.value,
-                  loc: state.loc,
-                })
-              }
-            />
-            <Select
-              onChange={(e) => {
-                const temp = [];
-                e.forEach((loc) => temp.push(loc.value));
-                setState({
-                  email: state.email,
-                  wallet: state.wallet,
-                  loc: temp,
-                });
-              }}
-              options={options}
-              isMulti={true}
-              isSearchable={true}
-              placeholder="Locations to get web3 event updates for..."
-              name="loc"
-              className="select"
-              styles={{
-                input: ({ color, ...provided }) => ({
-                  ...provided,
-                  color: "white !important",
-                }),
-                control: ({ backgroundColor, ...provided }) => ({
-                  ...provided,
-                  backgroundColor: "#3B3B3B !important",
-                }),
-                menu: ({ backgroundColor, ...provided }) => ({
-                  ...provided,
-                  backgroundColor: "#3b3b3b !important",
-                }),
-                option: ({ backgroundColor, ...provided }) => ({
-                  ...provided,
-                  backgroundColor: "#3b3b3b !important",
-                  "&:hover": {
-                    backgroundColor: "black !important",
-                  },
-                }),
-                clearIndicator: ({ color, ...provided }) => ({
-                  ...provided,
-                  color: "white !important",
-                  "&:hover": {
-                    color: "red !important",
-                  },
-                }),
-                dropdownIndicator: ({ color, ...provided }) => ({
-                  ...provided,
-                  color: "white !important",
-                  "&:hover": {
-                    color: "green !important",
-                  },
-                }),
-                multiValueLabel: ({ backgroundColor, ...provided }) => ({
-                  ...provided,
-                  backgroundColor: "black !important",
-                  color: "white",
-                }),
-                multiValueRemove: ({
-                  backgroundColor,
-                  color,
-                  ...provided
-                }) => ({
-                  ...provided,
-                  backgroundColor: "black !important",
-                  color: "white",
-                }),
-                multiValue: ({ backgroundColor, ...provided }) => ({
-                  ...provided,
-                  backgroundColor: "black !important",
-                }),
-              }}
-            />
-
-            <button className="btn-submit">Subscribe</button>
-          </form>
-        </div>
+        <a
+          href="https://forms.gle/eH3XiA5zXiQ86xCNA"
+          style={{ padding: "3em" }}
+        >
+          <button>Enter</button>
+        </a>
 
         <p style={{ textAlign: "center" }}>
           Created by <code>Ali Solanki</code>

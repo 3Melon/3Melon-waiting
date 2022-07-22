@@ -28,6 +28,7 @@
   display: grid;
   align-content: space-between;
   text-align: center;
+  align-content: center;
 }
 
 form {
